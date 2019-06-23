@@ -206,11 +206,11 @@ output_size = 1
 hidden_size = 256
 N_LAYERS = 2
 #changed from 0.2 to 0.4
-DROPOUT = 0.4
+DROPOUT = 0.2
 embedding_length = 100
 in_channels=1
 out_channels=192
-kernel_heights=[2,3,4,5]
+kernel_heights=[1,2,3,4]
 stride=1
 padding=0
 keep_probab=0.4
