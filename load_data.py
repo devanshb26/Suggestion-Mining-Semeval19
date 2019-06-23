@@ -108,9 +108,7 @@ def tokenize_en(text):
   t=[]
   spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
   for tok in tokenized:
-    if tok in spacy_stopwords:
-      continue
-    elif tok == "-" or tok == " " or tok == "  ":
+    if tok == "-" or tok == " " or tok == "  ":
       continue
     else:
       t.append(tok)
@@ -136,7 +134,7 @@ def load_dataset(test_sen=None):
     """
     
 #     tokenize = lambda x: x.split()
-    TEXT = data.Field(sequential=True, tokenize=tokenize_en, lower=True, include_lengths=True, batch_first=True,fix_length=40)
+    TEXT = data.Field(sequential=True, tokenize='spacy', lower=True, include_lengths=True, batch_first=True,fix_length=40)
     LABEL = data.LabelField(dtype=torch.float)
     fields = [(None,None),(None,None),('text', TEXT),('label', LABEL)]
     train_data, valid_data, test_data = data.TabularDataset.splits(
