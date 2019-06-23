@@ -151,12 +151,12 @@ torch.backends.cudnn.enabled = False
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 ######################################
-from models.LSTM import LSTMClassifier
-from models.LSTM_Attn import AttentionModel
+from LSTM import LSTMClassifier
+from LSTM_Attn import AttentionModel
 # from models.Lstm_attn_b import AttentionModel
-from models.RCNN import RCNN
-from models.CNN import CNN
-from models.selfAttention import SelfAttention
+# from models.RCNN import RCNN
+from CNN import CNN
+# from models.selfAttention import SelfAttention
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 TEXT, vocab_size, word_embeddings, train_iter, valid_iter, test_iter = load_data.load_dataset()
 
@@ -217,8 +217,8 @@ padding=0
 keep_probab=0.3
 
 
-# model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings,N_LAYERS,DROPOUT)
-model = CNN(batch_size, output_size, in_channels, out_channels, kernel_heights, stride, padding, keep_probab, vocab_size, embedding_length, word_embeddings)
+model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings,N_LAYERS,DROPOUT)
+# model = CNN(batch_size, output_size, in_channels, out_channels, kernel_heights, stride, padding, keep_probab, vocab_size, embedding_length, word_embeddings)
 # loss_fn = F.cross_entropy
 
 import torch.optim as optim
