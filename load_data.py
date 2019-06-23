@@ -103,11 +103,12 @@ def tokenize_en(text):
   text = re.sub(r"\0s", "0", text)
   text = re.sub(r"e - mail", "email", text)
   text = re.sub(r"j k", "jk", text)
-#   text = re.sub(' +', ' ',text)
+  text = re.sub(' +', ' ',text)
   tokenized=[tok.text for tok in nlp(text)]
   t=[]
+  spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
   for tok in tokenized:
-    if tok == " " or tok == "  " or tok == "-":
+    if tok == "-" or tok in spacy_stopwords:
       continue
     else:
       t.append(tok)
