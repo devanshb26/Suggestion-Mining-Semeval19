@@ -409,7 +409,7 @@ for epoch in range(N_EPOCHS):
       torch.save(model.state_dict(), 'tut4-model.pt')
   else:
     c=c+1
-  if c==6:
+  if c==3:
     print(epoch)
     break
   print(f'Epoch: {epoch+1:02} | Epoch Time: {epoch_mins}m {epoch_secs}s')
