@@ -136,7 +136,7 @@ def tokenize_en(text):
 
 #########################
 from torch.backends import cudnn
-seed = 12
+seed = 1234
 
 # seed=random.randint(0, 10000)
 print(seed)
@@ -203,10 +203,10 @@ TEXT, vocab_size, word_embeddings, train_iter, valid_iter, test_iter = load_data
 # learning_rate = 2e-5
 batch_size = 64
 output_size = 1
-hidden_size = 256
+hidden_size = 64
 N_LAYERS = 2
 #changed from 0.2 to 0.4
-DROPOUT = 0.4
+DROPOUT = 0.2
 embedding_length = 100
 in_channels=1
 out_channels=192
