@@ -108,7 +108,9 @@ def tokenize_en(text):
   t=[]
   spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
   for tok in tokenized:
-    if tok == "-" or tok in spacy_stopwords:
+    if tok in spacy_stopwords:
+      continue
+    elif tok == "-" or tok == " " or tok == "  ":
       continue
     else:
       t.append(tok)
