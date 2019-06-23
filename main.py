@@ -155,7 +155,7 @@ from LSTM import LSTMClassifier
 from LSTM_Attn import AttentionModel
 #from models.RCNN import RCNN
 from CNN import CNN
-from models.selfAttention import SelfAttention
+# from models.selfAttention import SelfAttention
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 TEXT, vocab_size, word_embeddings, train_iter, valid_iter, test_iter = load_data.load_dataset()
 
