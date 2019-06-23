@@ -206,7 +206,7 @@ output_size = 1
 hidden_size = 256
 N_LAYERS = 2
 #changed from 0.2 to 0.4
-DROPOUT = 0.2
+DROPOUT = 0.3
 embedding_length = 100
 in_channels=1
 out_channels=192
@@ -409,9 +409,9 @@ for epoch in range(N_EPOCHS):
       torch.save(model.state_dict(), 'tut4-model.pt')
   else:
     c=c+1
-  if c==3:
-    print(epoch)
-    break
+#   if c==3:
+#     print(epoch)
+#     break
   print(f'Epoch: {epoch+1:02} | Epoch Time: {epoch_mins}m {epoch_secs}s')
   print(f'\tTrain Loss: {train_loss:.3f} | Train Acc: {train_acc*100:.2f}% | Train_f1 : {train_f1:.4f}')
   print(f'\t Val. Loss: {valid_loss:.3f} |  Val. Acc: {valid_acc*100:.2f}% | Valid_f1 : {f1:.4f}')
