@@ -151,11 +151,12 @@ torch.backends.cudnn.enabled = False
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 ######################################
-from LSTM import LSTMClassifier
-from LSTM_Attn import AttentionModel
-# from models.RCNN import RCNN
-from CNN import CNN
-# from models.selfAttention import SelfAttention
+from models.LSTM import LSTMClassifier
+from models.LSTM_Attn import AttentionModel
+# from models.Lstm_attn_b import AttentionModel
+from models.RCNN import RCNN
+from models.CNN import CNN
+from models.selfAttention import SelfAttention
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 TEXT, vocab_size, word_embeddings, train_iter, valid_iter, test_iter = load_data.load_dataset()
 
@@ -213,11 +214,11 @@ out_channels=192
 kernel_heights=[1,2,3,4]
 stride=1
 padding=0
-keep_probab=0.4
+keep_probab=0.3
 
 
-model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings,N_LAYERS,DROPOUT)
-# model = CNN(batch_size, output_size, in_channels, out_channels, kernel_heights, stride, padding, keep_probab, vocab_size, embedding_length, word_embeddings)
+# model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings,N_LAYERS,DROPOUT)
+model = CNN(batch_size, output_size, in_channels, out_channels, kernel_heights, stride, padding, keep_probab, vocab_size, embedding_length, word_embeddings)
 # loss_fn = F.cross_entropy
 
 import torch.optim as optim
@@ -429,10 +430,14 @@ print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%| Test_f1_mac 
 ###############################################
 
 
+  
+###############################################
+
+
 def predict_sentiment(model):
     model.eval()
     l=[]
-    df=pd.read_csv("SubtaskB_Trial_Test_Labeled - Copy.csv")
+    df=pd.read_csv("SubtaskA_Trial_Test_Labeled - Copy.csv")
     with torch.no_grad():
 		
 	    for i in range(len(df)):
@@ -455,10 +460,16 @@ def predict_sentiment(model):
 	#       test_tensor = Variable(tensor, volatile=True)
 	#       test_tensor = test_tensor.cuda()
 	#       test_tensor=test_tensor.unsqueeze(1)
-	      prediction = torch.sigmoid(model(test_tensor,1))
+	      if len(tokenized)>=4:
+	      	prediction = torch.sigmoid(model(test_tensor,1))
 	#       print(prediction)
-	      l.append(((prediction[0][0]).data).cpu().numpy())
-
+	      	l.append(((prediction[0][0]).data).cpu().numpy())
+	      
+	
+	      else:
+	      	l.append(-1)
+		
+		
     df['preds']=l
     import csv
     df.to_csv('predidctions.csv')
