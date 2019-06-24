@@ -204,9 +204,9 @@ TEXT, vocab_size, word_embeddings, train_iter, valid_iter, test_iter = load_data
 batch_size = 64
 output_size = 1
 hidden_size = 256
-N_LAYERS = 1
+N_LAYERS = 2
 #changed from 0.2 to 0.4
-DROPOUT = 0.3
+DROPOUT = 0.2
 embedding_length = 100
 in_channels=1
 out_channels=192
