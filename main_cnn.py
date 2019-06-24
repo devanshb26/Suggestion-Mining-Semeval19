@@ -388,7 +388,7 @@ def epoch_time(start_time, end_time):
     elapsed_secs = int(elapsed_time - (elapsed_mins * 60))
     return elapsed_mins, elapsed_secs
     
-    
+# 10 epochs for subtask A    
 N_EPOCHS = 20
 best_valid_f1 = float(0)
 c=0
